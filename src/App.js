@@ -33,10 +33,10 @@ function App() {
         'Content-Type' : 'application/json'
       },
       body: JSON.stringify(newOnmyoji)
-    })
+    }).then(() => {
+      getOnmy();
+    });
   }
-
-
 
 //function to set selected onmyoji when you clicked on
 const selectOnmyoji = (onmyoji) => {
