@@ -23,7 +23,6 @@ function App() {
   //MAKE A STATE TO HOLD THE ONMYOJIS. Our API was 1 object with status and an array of Onmyojis. 
   // So set the begining state to empty object
   const [onmyojis, setOnmyojis] = React.useState({})
-  const [shikigamis, setShikigamis] = React.useState({})
   const [selectedOnmyoji, setSelectedOnmyoji] = React.useState({})
 
   // ------  CREATE ROUTE ------
@@ -70,28 +69,20 @@ const selectOnmyoji = (onmyoji) => {
   }
 
 
-
   // ============= USEEFFECT FUNCTION TO GET ONMYOJI DATA =============
+
   const getOnmy = async () => {
     const response = await fetch(`${url}/onmyoji`);
     const data = await response.json();
     setOnmyojis(data);
   };
   
-  const getShiki = async () => {
-    const response = await fetch(`${url}/shiki`);
-    const data = await response.json();
-    setShikigamis(data);
-  };
-
   // fetch dogs when page loads
   React.useEffect(() => {
     getOnmy()
-    getShiki()
   }, [])
 
   console.log("onmyojis state: ", onmyojis)
- 
 
   return (
     <div className="App">
@@ -103,11 +94,10 @@ const selectOnmyoji = (onmyoji) => {
         <button>Create an Onmyoji</button>
       </Link>
 
-
       <div className="main">
         <section>
           <h2>Shikigami List</h2>
-          <Shikidisplay shikigamis ={shikigamis} />
+          <Shikidisplay />
         </section>
         <Switch>
           <Route 
